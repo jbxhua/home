@@ -18,20 +18,23 @@
 
 				<!-- Header -->
 					<header id="header">
-						<div class="inner">
+						<!-- Animated Background -->
+						<div class="finisher-header"></div>
 
+						<!-- Inner Content (Logo & Navigation) -->
+						<div class="header-content">
 							<!-- Logo -->
-								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo_2.png" alt="" /></span><span class="title">Research</span>
-								</a>
+							<a href="index.html" class="logo">
+								<span class="symbol"><img src="images/logo_2.png" alt="" /></span>
+								<span class="title">Jason Hua, PhD Candidate</span>
+							</a>
 
 							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
-
+							<nav>
+								<ul>
+									<li><a href="#menu">Menu</a></li>
+								</ul>
+							</nav>
 						</div>
 					</header>
 
@@ -52,9 +55,12 @@
 						<div class="inner">
 							<h1>Environmental Science and Engineering</h1>
 							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
-							<p>My research focuses on identyifying sources of polychlorinated biphenyls (PCBs) in schools.</p>
-							<p>google scholar, research gate, orcid data pubs etc. pub previews Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
+							<p>I study a class of chemicals called polychlorinated biphenyls (PCBs) in the environment. PCBs are toxic, man-made chemicals that were used in a variety of industrial and commercial applications such as transformers and capacitors, heat transfer and hydraulic fluid, plasticizers, adhesives, and building materials. PCBs were banned in 1979 because of their toxicity; they are carcinogens, endocrine disruptors, and neurotoxins. Click <a href = "=">here</a> to learn more about PCBs.</p>
+
+							<p>My current research focuses on identying sources of PCBs in school air and PCB emissions from building materials in schools. To measure PCBs in schools, we deploy polyurethane foam passive air samplers (PUF-PAS) and polyurethane foam passive emission samplers (PUF-PES). [add pics] In collarboration with the Vermont Department of Environmental Conservation and the Vermont Department of Health, we deployed these samplers in 19 schools throughout Vermont between 2022 - 2024 to identify major sources of PCBs in schools. </p>
+
+							<p>[include pub summary here] for pcb page: include section on Vermont pcb project</p>
+
 							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
 						</div>
 					</div>
@@ -90,6 +96,43 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/finisher-header.es5.min.js" type="text/javascript"></script>
+			<script type="text/javascript">
+				new FinisherHeader({
+				"count": 12,
+				"size": {
+					"min": 1300,
+					"max": 1500,
+					"pulse": 0
+				},
+				"speed": {
+					"x": {
+					"min": 0.6,
+					"max": 3
+					},
+					"y": {
+					"min": 0.6,
+					"max": 3
+					}
+				},
+				"colors": {
+					"background": "#8cabbe",
+					"particles": [
+					"#a4bfeb",
+					"#cc3f0c"
+					]
+				},
+				"blending": "lighten",
+				"opacity": {
+					"center": 0.6,
+					"edge": 0
+				},
+				"skew": 0,
+				"shapes": [
+					"c"
+				]
+				});
+				</script>
 
 	</body>
 </html>

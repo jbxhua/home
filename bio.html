@@ -18,20 +18,23 @@
 
 				<!-- Header -->
 					<header id="header">
-						<div class="inner">
+						<!-- Animated Background -->
+						<div class="finisher-header"></div>
 
+						<!-- Inner Content (Logo & Navigation) -->
+						<div class="header-content">
 							<!-- Logo -->
-								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo_2.png" alt="" /></span><span class="title">Jason Hua</span>
-								</a>
+							<a href="index.html" class="logo">
+								<span class="symbol"><img src="images/logo_2.png" alt="" /></span>
+								<span class="title">Jason Hua, PhD Candidate</span>
+							</a>
 
 							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
-
+							<nav>
+								<ul>
+									<li><a href="#menu">Menu</a></li>
+								</ul>
+							</nav>
 						</div>
 					</header>
 
@@ -53,11 +56,11 @@
 							<h1>Bio</h1>
 							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
 
-							<p>Environmental engineer and scientist. I received my B.S.E. in Civil Engineering with a focus in Environmental Engineering from the University of Iowa in 2021. Currently, I am a PhD candidate in Civil and Environmental Engineering at the University of Iowa, advised by Dr. Keri Hornbuckle. </p>
+							<p>Environmental engineer and scientist. I received my B.S.E. in Civil Engineering from the University of Iowa in 2021. Currently, I am a PhD candidate in Civil and Environmental Engineering at the University of Iowa, advised by Dr. Keri Hornbuckle. I study a class of chemicals called polychlorinated biphenyls (PCBs). PCBs are toxic, man-made chemicals that were used in a variety of industrial and commercial applications such as transformers and capacitors, heat transfer and hydraulic fluid, plasticizers, adhesives, and building materials. PCBs were banned in 1979 because of their toxicity; they are carcinogens, endocrine disruptors, and neurotoxins. </p>
 
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
 
-							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+							<p>Outside of my research, I like to bounce around between a variety of hobbies, including photography, music, cooking, and gaming. Photography: I picked up photography in 2021, starting with a basic digital camera. Eventually, I also started shooting film, mostly 35mm and 120. You can browse through some of my pictures in the photography section <a href="photo.html">here</a>. It's all just for fun, nothing serious. Music: I'd say music was my first true passion.  </p>
 
 						</div>
 					</div>
@@ -93,6 +96,43 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/finisher-header.es5.min.js" type="text/javascript"></script>
+			<script type="text/javascript">
+				new FinisherHeader({
+				"count": 12,
+				"size": {
+					"min": 1300,
+					"max": 1500,
+					"pulse": 0
+				},
+				"speed": {
+					"x": {
+					"min": 0.6,
+					"max": 3
+					},
+					"y": {
+					"min": 0.6,
+					"max": 3
+					}
+				},
+				"colors": {
+					"background": "#8cabbe",
+					"particles": [
+					"#a4bfeb",
+					"#cc3f0c"
+					]
+				},
+				"blending": "lighten",
+				"opacity": {
+					"center": 0.6,
+					"edge": 0
+				},
+				"skew": 0,
+				"shapes": [
+					"c"
+				]
+				});
+				</script>
 
 	</body>
 </html>
