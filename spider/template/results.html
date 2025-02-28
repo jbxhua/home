@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PubChem Results</title>
+</head>
+<body>
+    <h2>PubChem Query Results</h2>
+    <table border="1">
+        <tr>
+            <th>CAS Number</th>
+            <th>CID</th>
+            <th>Molecular Formula</th>
+            <th>Compound Name</th>
+            <th>PubChem Link</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.CAS }}</td>
+            <td>{{ result.CID }}</td>
+            <td>{{ result["Molecular Formula"] }}</td>
+            <td>{{ result["Compound Name"] }}</td>
+            <td>
+                {% if result["PubChem Link"] != "N/A" %}
+                    <a href="{{ result['PubChem Link'] }}" target="_blank">View</a>
+                {% else %}
+                    N/A
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
