@@ -3,7 +3,6 @@ import requests
 import pandas as pd
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
-from flasgger import Swagger
 from urllib.parse import quote
 
 app = Flask(__name__)
