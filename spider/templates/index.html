@@ -1,35 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Upload CAS CSV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CSV</title>
 </head>
 <body>
+
     <h2>Upload a CSV File</h2>
-    <form id="upload-form">
-        <input type="file" id="file-input" accept=".csv">
-        <br><br>
+    
+    <form id="uploadForm" accept-charset="UTF-8">
+        <input type="file" id="fileInput" name="file" required>
         <button type="submit">Upload and Process</button>
     </form>
 
-    <h3>Results</h3>
-    <div id="results"></div>
+    <pre id="response"></pre>
 
     <script>
         document.getElementById("uploadForm").onsubmit = async function(event) {
             event.preventDefault();  // Prevent page reload
-    
+
+            let fileInput = document.getElementById("fileInput");
+            if (!fileInput) {
+                console.error("Error: fileInput element not found!");
+                return;
+            }
+
             let formData = new FormData();
-            formData.append("file", document.getElementById("fileInput").files[0]);
-    
+            formData.append("file", fileInput.files[0]);
+
             try {
                 let response = await fetch("https://chemspider.onrender.com/", {  // Replace with your actual Render URL
                     method: "POST",
                     body: formData
                 });
-    
+
                 let textResponse = await response.text();  // Get raw text
                 console.log("Raw Response:", textResponse); // Debugging output
-    
+
                 let result = JSON.parse(textResponse);  // Convert to JSON
                 document.getElementById("response").innerText = JSON.stringify(result, null, 2);
             } catch (error) {
@@ -38,5 +46,6 @@
             }
         };
     </script>
+
 </body>
 </html>
