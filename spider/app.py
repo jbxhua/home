@@ -1,18 +1,14 @@
-import os
-import requests
-import pandas as pd
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+import pandas as pd
 from urllib.parse import quote
 
 app = Flask(__name__)
-CORS(app)
-
-PUBCHEM_API_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{}/JSON"
+CORS(app)  # Enable CORS for all domains
 
 @app.route('/')
 def index():
-    return jsonify({"message": "Welcome to the PubChem API! Use the /upload endpoint to upload a CSV."})
+    return jsonify({"message": "Welcome to the PubChem API! Use the /upload endpoint to upload a CSV."}), 200  # Ensure JSON response
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -38,7 +34,7 @@ def upload_file():
         url = f"https://pubchem.ncbi.nlm.nih.gov/#query={cas_encoded}"
         urls.append({"CAS": cas_number, "PubChem_URL": url})
 
-    return jsonify({"message": "File processed successfully", "data": urls}), 200
+    return jsonify({"message": "File processed successfully", "data": urls}), 200  # Ensure JSON response
 
 if __name__ == '__main__':
     app.run(debug=True)

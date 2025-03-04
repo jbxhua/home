@@ -15,29 +15,28 @@
     <div id="results"></div>
 
     <script>
-        document.getElementById("upload-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            let fileInput = document.getElementById("file-input").files[0];
-            if (!fileInput) {
-                alert("Please select a file.");
-                return;
-            }
-
+        document.getElementById("uploadForm").onsubmit = async function(event) {
+            event.preventDefault();  // Prevent page reload
+    
             let formData = new FormData();
-            formData.append("file", fileInput);
-
-            fetch("https://chemspider.onrender.com/", {  // Replace with your Render URL
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                let resultsDiv = document.getElementById("results");
-                resultsDiv.innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
-            })
-            .catch(error => console.error("Error:", error));
-        });
+            formData.append("file", document.getElementById("fileInput").files[0]);
+    
+            try {
+                let response = await fetch("https://chemspider.onrender.com/", {  // Replace with your actual Render URL
+                    method: "POST",
+                    body: formData
+                });
+    
+                let textResponse = await response.text();  // Get raw text
+                console.log("Raw Response:", textResponse); // Debugging output
+    
+                let result = JSON.parse(textResponse);  // Convert to JSON
+                document.getElementById("response").innerText = JSON.stringify(result, null, 2);
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+                document.getElementById("response").innerText = "Error processing the file.";
+            }
+        };
     </script>
 </body>
 </html>
