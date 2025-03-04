@@ -3,15 +3,17 @@ import requests
 import pandas as pd
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
+from flasgger import Swagger
 from urllib.parse import quote
 
 app = Flask(__name__)
+CORS(app)
 
 PUBCHEM_API_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{}/JSON"
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return jsonify({"message": "Welcome to the PubChem API! Use the /upload endpoint to upload a CSV."})
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -19,46 +21,25 @@ def upload_file():
         return jsonify({"error": "No file part"}), 400
 
     file = request.files['file']
-
     if file.filename == '':
         return jsonify({"error": "No selected file"}), 400
 
-    if file and file.filename.endswith('.csv'):
+    # Read the CSV file
+    try:
         df = pd.read_csv(file)
+        if 'CAS' not in df.columns:
+            return jsonify({"error": "CSV must contain a 'CAS' column"}), 400
+    except Exception as e:
+        return jsonify({"error": f"Failed to read CSV: {str(e)}"}), 400
 
-        results = []
+    # Generate PubChem URLs for each CAS number
+    urls = []
+    for cas_number in df['CAS']:
+        cas_encoded = quote(str(cas_number))  # URL-encode CAS number
+        url = f"https://pubchem.ncbi.nlm.nih.gov/#query={cas_encoded}"
+        urls.append({"CAS": cas_number, "PubChem_URL": url})
 
-        for cas_number in df['CAS']:
-            cas_encoded = quote(str(cas_number))  # URL-encode CAS number
-            url = PUBCHEM_API_URL.format(cas_encoded)
-
-            response = requests.get(url)
-
-            if response.status_code == 200:
-                data = response.json()
-
-                try:
-                    compound_info = data['PC_Compounds'][0]
-                    cid = compound_info['id']['id']['cid']
-                    molecular_formula = compound_info['props'][0]['value']['sval']
-                    compound_name = compound_info['props'][1]['value']['sval']
-
-                    results.append({
-                        "CAS": cas_number,
-                        "CID": cid,
-                        "Molecular Formula": molecular_formula,
-                        "Compound Name": compound_name,
-                        "PubChem Link": f"https://pubchem.ncbi.nlm.nih.gov/compound/{cid}"
-                    })
-                except KeyError:
-                    results.append({"CAS": cas_number, "CID": "Not Found", "Molecular Formula": "N/A", "Compound Name": "N/A", "PubChem Link": "N/A"})
-            else:
-                results.append({"CAS": cas_number, "CID": "Error", "Molecular Formula": "N/A", "Compound Name": "N/A", "PubChem Link": "N/A"})
-
-        return jsonify(results)
-
-    return jsonify({"error": "Invalid file format. Please upload a CSV file."}), 400
+    return jsonify({"message": "File processed successfully", "data": urls}), 200
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
