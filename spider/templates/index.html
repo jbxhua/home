@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload CAS CSV</title>
+</head>
+<body>
+    <h2>Upload a CSV File</h2>
+    <form id="upload-form">
+        <input type="file" id="file-input" accept=".csv">
+        <br><br>
+        <button type="submit">Upload and Process</button>
+    </form>
+
+    <h3>Results</h3>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById("upload-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let fileInput = document.getElementById("file-input").files[0];
+            if (!fileInput) {
+                alert("Please select a file.");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("file", fileInput);
+
+            fetch("https://yourapp.onrender.com/upload", {  // Replace with your Render URL
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                let resultsDiv = document.getElementById("results");
+                resultsDiv.innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+</body>
+</html>

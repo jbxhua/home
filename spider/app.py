@@ -1,3 +1,4 @@
+import os
 import requests
 import pandas as pd
 from flask import Flask, request, render_template
@@ -14,12 +15,12 @@ def index():
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
-        return "No file part"
+        return jsonify({"error": "No file part"}), 400
 
     file = request.files['file']
 
     if file.filename == '':
-        return "No selected file"
+        return jsonify({"error": "No selected file"}), 400
 
     if file and file.filename.endswith('.csv'):
         df = pd.read_csv(file)
@@ -35,7 +36,6 @@ def upload_file():
             if response.status_code == 200:
                 data = response.json()
 
-                # Extract relevant info (e.g., CID, molecular formula, name)
                 try:
                     compound_info = data['PC_Compounds'][0]
                     cid = compound_info['id']['id']['cid']
@@ -51,13 +51,13 @@ def upload_file():
                     })
                 except KeyError:
                     results.append({"CAS": cas_number, "CID": "Not Found", "Molecular Formula": "N/A", "Compound Name": "N/A", "PubChem Link": "N/A"})
-
             else:
                 results.append({"CAS": cas_number, "CID": "Error", "Molecular Formula": "N/A", "Compound Name": "N/A", "PubChem Link": "N/A"})
 
-        return render_template('results.html', results=results)
+        return jsonify(results)
 
-    return "Invalid file format. Please upload a CSV file."
+    return jsonify({"error": "Invalid file format. Please upload a CSV file."}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
