@@ -1,6 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 from urllib.parse import quote
 
 app = Flask(__name__)
