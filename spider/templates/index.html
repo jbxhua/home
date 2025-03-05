@@ -17,12 +17,12 @@
     <pre id="response"></pre>
 
     <script>
-       document.getElementById("upload-form").addEventListener("submit", async function (event) {
+       document.getElementById("uploadform").addEventListener("submit", async function (event) {
         event.preventDefault();
 
         let fileInput = document.getElementById("file");
         let formData = new FormData();
-        formData.append("file", fileInput.files[0]);
+        formData.append("fileInput", fileInput.files[0]);
 
         try {
             let response = await fetch("https://chemspider.onrender.com/upload", {
