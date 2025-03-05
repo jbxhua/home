@@ -37,7 +37,7 @@ def upload_file():
                 soup = BeautifulSoup(response.text, 'html.parser')
                 #soup = BeautifulSoup(response, 'html.parser')
 
-                a_tag = soup.find('a', {'href': True})
+                #a_tag = soup.find('a', {'href': True})
                 #url =  a_tag['href'] if a_tag else 'URL not found.'
 
                 name = soup.find('div', class_ = 'break-words space-y-1')
