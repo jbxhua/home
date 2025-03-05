@@ -9,7 +9,7 @@
 
     <h2>Upload a CSV File</h2>
     
-    <form id="uploadForm" accept-charset="UTF-8">
+    <form id="uploadForm" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
         <input type="file" id="fileInput" name="file" required>
         <button type="submit">Upload and Process</button>
     </form>
@@ -17,30 +17,31 @@
     <pre id="response"></pre>
 
     <script>
-       document.getElementById("uploadForm").addEventListener("submit", async function (event) {
-        event.preventDefault();
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("uploadForm").addEventListener("submit", async function (event) {
+                event.preventDefault();
 
-        let fileInput = document.getElementById("fileInput");
-        let formData = new FormData();
-        formData.append("file", fileInput.files[0]);
+                let fileInput = document.getElementById("fileInput");
+                let formData = new FormData();
+                formData.append("file", fileInput.files[0]);
 
-        try {
-            let response = await fetch("https://chemspider.onrender.com/upload", {
-                method: "POST",
-                body: formData,
+                try {
+                    let response = await fetch("https://chemspider.onrender.com/upload", {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    let data = await response.json(); // Ensure backend returns JSON
+                    console.log("Success:", data);
+                } catch (error) {
+                    console.error("Error:", error);
+                }
             });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            let data = await response.json(); // Ensure backend returns JSON
-            console.log("Success:", data);
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    });
-
+        });
     </script>
 
 </body>
