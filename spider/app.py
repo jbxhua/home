@@ -30,13 +30,17 @@ def upload_file():
 
             for cas_number in df['CAS']:
                 cas_encoded = quote(str(cas_number))
-                url = f"https://pubchem.ncbi.nlm.nih.gov/#query={cas_encoded}"
+                #url = f"https://pubchem.ncbi.nlm.nih.gov/#query={cas_encoded}"
                 
                 # Scrape PubChem
                 response = requests.get(url)
-                soup = BeautifulSoup(response.text, 'html.parser')
+                #soup = BeautifulSoup(response.text, 'html.parser')
+                soup = BeautifulSoup(response, 'html.parser')
 
-                name = soup.find('h1', class_ = 'short')
+                a_tag = soup.find('a', {'href': True})
+                url =  a_tag['href'] if a_tag else 'URL not found.'
+
+                name = soup.find('div', class_ = 'break-words space-y-1')
                 compound = name.get_text() if name else "Compound not found."
 
                 results.append({
