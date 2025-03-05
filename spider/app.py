@@ -34,16 +34,18 @@ def upload_file():
                 
                 # Scrape PubChem
                 response = requests.get(url)
-                soup = BeautifulSoup(response.content, 'html.parser')
+                soup = BeautifulSoup(response.text, 'html.parser')
 
                 name = soup.find('h1', class_ = 'short')
+                compound = name.get_text() if name else "Compound not found."
 
                 results.append({
                     "CAS": cas_number,
-                    "Compound": name,
+                    "Compound": compound,
                     "URL": url
                 })
 
+                print(name)
             return jsonify({"data": results}), 200  # Send JSON data to frontend
 
         except Exception as e:
