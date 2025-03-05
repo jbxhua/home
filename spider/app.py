@@ -38,11 +38,12 @@ def upload_file():
                 # Extract relevant data (Modify selectors based on actual page structure)
                 name = soup.find("meta", {"name": "pubchem_title"})  # Example selector
                 molecular_formula = soup.find("meta", {"name": "pubchem_formula"})
+                title = soup.title.string if soup.title else "N/A"
 
                 results.append({
                     "CAS": cas_number,
                     "Name": name["content"] if name else "N/A",
-                    "Formula": molecular_formula["content"] if molecular_formula else "N/A",
+                    "Title": title if title else "N/A",
                     "URL": url
                 })
 
