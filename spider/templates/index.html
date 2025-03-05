@@ -17,34 +17,30 @@
     <pre id="response"></pre>
 
     <script>
-        document.getElementById("uploadForm").onsubmit = async function(event) {
-            event.preventDefault();  // Prevent page reload
+       document.getElementById("upload-form").addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-            let fileInput = document.getElementById("fileInput");
-            if (!fileInput) {
-                console.error("Error: fileInput element not found!");
-                return;
+        let fileInput = document.getElementById("file");
+        let formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+
+        try {
+            let response = await fetch("https://chemspider.onrender.com/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
-            let formData = new FormData();
-            formData.append("file", fileInput.files[0]);
+            let data = await response.json(); // Ensure backend returns JSON
+            console.log("Success:", data);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    });
 
-            try {
-                let response = await fetch("https://chemspider.onrender.com/", {  // Replace with your actual Render URL
-                    method: "POST",
-                    body: formData
-                });
-
-                let textResponse = await response.text();  // Get raw text
-                console.log("Raw Response:", textResponse); // Debugging output
-
-                let result = JSON.parse(textResponse);  // Convert to JSON
-                document.getElementById("response").innerText = JSON.stringify(result, null, 2);
-            } catch (error) {
-                console.error("Error parsing JSON:", error);
-                document.getElementById("response").innerText = "Error processing the file.";
-            }
-        };
     </script>
 
 </body>
