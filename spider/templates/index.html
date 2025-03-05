@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload CSV</title>
+    
 </head>
 <body>
 
@@ -13,6 +14,8 @@
         <input type="file" id="fileInput" name="file" required>
         <button type="submit">Upload and Process</button>
     </form>
+    
+    <table border="1" id="resultsTable"></table>
 
     <pre id="response"></pre>
 
@@ -20,29 +23,59 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("uploadForm").addEventListener("submit", async function (event) {
                 event.preventDefault();
-
+    
                 let fileInput = document.getElementById("fileInput");
                 let formData = new FormData();
                 formData.append("file", fileInput.files[0]);
-
+    
                 try {
                     let response = await fetch("https://chemspider.onrender.com/upload", {
                         method: "POST",
                         body: formData,
                     });
-
+    
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
-
-                    let data = await response.json(); // Ensure backend returns JSON
-                    console.log("Success:", data);
+    
+                    let data = await response.json();
+                    displayResults(data.data);  // Call function to show data in table
+    
                 } catch (error) {
                     console.error("Error:", error);
                 }
             });
+    
+            function displayResults(data) {
+                let table = document.getElementById("resultsTable");
+                table.innerHTML = ""; // Clear previous results
+    
+                // Create table headers
+                let headerRow = table.insertRow();
+                ["CAS", "Name", "Formula", "URL"].forEach(headerText => {
+                    let th = document.createElement("th");
+                    th.textContent = headerText;
+                    headerRow.appendChild(th);
+                });
+    
+                // Populate table with data
+                data.forEach(item => {
+                    let row = table.insertRow();
+                    row.insertCell(0).textContent = item.CAS;
+                    row.insertCell(1).textContent = item.Name;
+                    row.insertCell(2).textContent = item.Formula;
+    
+                    let linkCell = row.insertCell(3);
+                    let link = document.createElement("a");
+                    link.href = item.URL;
+                    link.textContent = "PubChem Link";
+                    link.target = "_blank";
+                    linkCell.appendChild(link);
+                });
+            }
         });
     </script>
+    
 
 </body>
 </html>

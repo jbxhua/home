@@ -8,31 +8,48 @@ CORS(app)  # Enable CORS for all domains
 
 @app.route("/")
 def home():
-    return "Flask API is running!", 200
+    return render_template("index.html")  # Load homepage
 
 @app.route('/upload', methods=['POST'])  
 def upload_file():
     if 'file' not in request.files:
-        return "No file part", 400
+        return jsonify({"error": "No file part"}), 400
 
     file = request.files['file']
     
     if file.filename == '':
-        return "No selected file", 400
+        return jsonify({"error": "No selected file"}), 400
 
     if file and file.filename.endswith('.csv'):
-        df = pd.read_csv(file)
+        try:
+            df = pd.read_csv(file)
 
-        # Process CSV
-        urls = []
-        for cas_number in df['CAS']:
-            cas_encoded = quote(str(cas_number))
-            url = f"https://pubchem.ncbi.nlm.nih.gov/#query={cas_encoded}"
-            urls.append(url)
+            results = []
+            for cas_number in df['CAS']:
+                cas_encoded = quote(str(cas_number))
+                url = f"https://pubchem.ncbi.nlm.nih.gov/#query={cas_encoded}"
+                
+                # Scrape PubChem
+                response = requests.get(url)
+                soup = BeautifulSoup(response.content, 'html.parser')
 
-        return {"urls": urls}, 200  # Return JSON response
+                # Extract relevant data (Modify selectors based on actual page structure)
+                name = soup.find("meta", {"name": "pubchem_title"})  # Example selector
+                molecular_formula = soup.find("meta", {"name": "pubchem_formula"})
 
-    return "Invalid file format. Please upload a CSV file.", 400
+                results.append({
+                    "CAS": cas_number,
+                    "Name": name["content"] if name else "N/A",
+                    "Formula": molecular_formula["content"] if molecular_formula else "N/A",
+                    "URL": url
+                })
+
+            return jsonify({"data": results}), 200  # Send JSON data to frontend
+
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    return jsonify({"error": "Invalid file format. Please upload a CSV file."}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)
