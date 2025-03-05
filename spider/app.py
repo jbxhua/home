@@ -6,6 +6,10 @@ from urllib.parse import quote
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all domains
 
+@app.route("/")
+def home():
+    return "Flask API is running!", 200
+
 @app.route('/upload', methods=['POST'])  
 def upload_file():
     if 'file' not in request.files:
