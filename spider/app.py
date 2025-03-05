@@ -24,9 +24,10 @@ def upload_file():
 
     if file and file.filename.endswith('.csv'):
         try:
+            
             df = pd.read_csv(file)
-
             results = []
+
             for cas_number in df['CAS']:
                 cas_encoded = quote(str(cas_number))
                 url = f"https://pubchem.ncbi.nlm.nih.gov/#query={cas_encoded}"
@@ -35,15 +36,11 @@ def upload_file():
                 response = requests.get(url)
                 soup = BeautifulSoup(response.content, 'html.parser')
 
-                # Extract relevant data (Modify selectors based on actual page structure)
-                name = soup.find("meta", {"name": "pubchem_title"})  # Example selector
-                molecular_formula = soup.find("meta", {"name": "pubchem_formula"})
-                title = soup.title.string if soup.title else "N/A"
+                name = soup.find('h1', class_ = 'short')
 
                 results.append({
                     "CAS": cas_number,
-                    "Name": name["content"] if name else "N/A",
-                    "Title": title if title else "N/A",
+                    "Compound": name,
                     "URL": url
                 })
 

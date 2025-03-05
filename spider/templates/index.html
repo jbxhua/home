@@ -52,7 +52,7 @@
     
                 // Create table headers
                 let headerRow = table.insertRow();
-                ["CAS", "Name", "Formula", "URL"].forEach(headerText => {
+                ["CAS", "Compound Name", "URL"].forEach(headerText => {
                     let th = document.createElement("th");
                     th.textContent = headerText;
                     headerRow.appendChild(th);
@@ -62,10 +62,9 @@
                 data.forEach(item => {
                     let row = table.insertRow();
                     row.insertCell(0).textContent = item.CAS;
-                    row.insertCell(1).textContent = item.Name;
-                    row.insertCell(2).textContent = item.Formula;
+                    row.insertCell(1).textContent = item.Compound;
     
-                    let linkCell = row.insertCell(3);
+                    let linkCell = row.insertCell(2);
                     let link = document.createElement("a");
                     link.href = item.URL;
                     link.textContent = "PubChem Link";
