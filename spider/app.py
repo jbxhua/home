@@ -28,15 +28,22 @@ def upload_file():
             df = pd.read_csv(file)
             results = []
 
-            for cas_number in df['CAS']:
-                cas_encoded = quote(str(cas_number))
-                url = f"https://pubchem.ncbi.nlm.nih.gov/#query={cas_encoded}"
-                
+            for name_c in df['name']:
+                name_encoded = quote(str(name_c))
+                url = f"https://pubchem.ncbi.nlm.nih.gov/#query={name_encoded}"
+                # site = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/'
+                # property = '/property/IUPACName,Title,MolecularWeight,MolecularFormula'
+                # output = '/JSON'
+                # url = f"{site}{name_encoded}{property}{output}"
                 # Scrape PubChem
                 response = requests.get(url)
                 soup = BeautifulSoup(response.text, 'html.parser')
                 #soup = BeautifulSoup(response, 'html.parser')
 
+                # r = request.get(url)
+                # cont = r.json()
+                # print(cont)
+                
                 #a_tag = soup.find('a', {'href': True})
                 #url =  a_tag['href'] if a_tag else 'URL not found.'
 
