@@ -2834,7 +2834,7 @@ input, select, textarea {
 	}*/
 	#header {
 		position: relative;  /* Ensures inner content stays above */
-		height: 300px;       /* Adjust as needed */
+		height: 200px;       /* Adjust as needed */
 		overflow: hidden;    /* Prevents animation overflow */
 	}
 	
