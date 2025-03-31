@@ -3351,3 +3351,38 @@ input, select, textarea {
 			}
 
 		}
+
+
+/* CV */
+	.cv-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+	/* Left Column (Sidebar) */
+	.cv-sidebar {
+		flex: 1;
+		max-width: 25%;
+		background: #f4f4f4;
+		padding: 20px;
+		border-radius: 10px;
+		box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+	}
+
+	/* Right Column (Main CV Content) */
+	.cv-content {
+		flex: 3;
+		max-width: 70%;
+	}
+
+	/* Styling for CV Sections */
+	.cv-section {
+		background: white;
+		padding: 15px;
+		margin-bottom: 15px;
+		border-left: 4px solid #808080; /* Accent color */
+		border-radius: 5px;
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+	}
+	
