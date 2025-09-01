@@ -1,151 +1,394 @@
-<!DOCTYPE HTML>
-<!--
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Pics</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-		<!-- Wrapper -->
-			<div id="wrapper">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pics</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #888;
+        }
+        
+        /* Hero section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 60px;
+            background-color: #000;
+            color: #fff;
+            position: relative;
+        }
+        
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+        
+        /* Gallery section */
+        .gallery {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .photo-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-item img:hover {
+            transform: scale(1.1);
+        }
+        
+        /* About section */
+        .about {
+            padding: 5rem 5%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #fff;
+        }
+        
+        .about h2 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .about p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        /* Contact section */
+        .contact {
+            padding: 5rem 5%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #555;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+        
+        /* Modal for image view */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with navigation -->
+    <header>
+        <nav>
+            <div class="logo">Jason Hua</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="bio.html">Bio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-				<!-- Header -->
-					<header id="header">
-						<!-- Animated Background -->
-						<div class="finisher-header"></div>
+    <!-- Hero section -->
+    <section id="home" class="hero">
+        <img src="pics/park120.jpg" alt="Hero image" class="hero-image">
+        <h1>Placeholder</h1>
+        <p>Film + Digital</p>
+    </section>
 
-						<!-- Inner Content (Logo & Navigation) -->
-						<div class="header-content">
-							<!-- Logo -->
-							<a href="index.html" class="logo">
-								<span class="symbol"><img src="images/logo_2.png" alt="" /></span>
-								<span class="title">Jason Hua, PhD Candidate</span>
-							</a>
+    <!-- Gallery section -->
+    <section id="gallery" class="gallery">
+        <h2>This page is still a work in progress. Check back later for more.</h2>
+        <div class="photo-grid">
+            <!-- Replace these placeholder images with your actual photos -->
+            <div class="photo-item">
+                <img src="/pics/slide.jpg" alt="Photography sample 1">
+            </div>
+            <div class="photo-item">
+                <img src="/pics/flowermacro.jpg" alt="Photography sample 2">
+            </div>
+            <div class="photo-item">
+                <img src="/pics/flowermacro2.jpg" alt="Photography sample 3">
+            </div>
+            <div class="photo-item">
+                <img src="/pics/post.jpg" alt="Photography sample 4">
+            </div>
+            <div class="photo-item">
+                <img src="https://placehold.co/600x400/333/fff?text=Photo+5" alt="Photography sample 5">
+            </div>
+            <div class="photo-item">
+                <img src="https://placehold.co/600x400/333/fff?text=Photo+6" alt="Photography sample 6">
+            </div>
+        </div>
+    </section>
 
-							<!-- Nav -->
-							<nav>
-								<ul>
-									<li><a href="#menu">Menu</a></li>
-								</ul>
-							</nav>
-						</div>
-					</header>
+    <!-- About section -->
+    <!-- <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>Hello! I'm a passionate photographer specializing in [your photography style]. With [number] years of experience, I strive to capture the beauty in everyday moments and transform them into lasting memories.</p>
+        <p>My approach combines technical expertise with artistic vision to create images that tell stories and evoke emotions.</p>
+        <p>When I'm not behind the camera, you can find me [your interests/hobbies].</p>
+    </section> -->
 
-				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="bio.html">Bio</a></li>
-							<li><a href="generic.html">Research</a></li>
-							<li><a href="generic.html">Photography</a></li>
-							<li><a href="elements.html">CV/Resume</a></li>
-						</ul>
-					</nav>
+    <!-- Contact section -->
+    <!-- <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section> -->
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<h1>words and images but no diction</h1>
-							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
-							<p>pics, gear, etc</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
-							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
-						</div>
-					</div>
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="instagram.com/jsn.csv">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+        </div>
+        <p>&copy; 2025 Jason Hua. All rights reserved.</p>
+    </footer>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<!-- <section>
-								<h2>Get in touch</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-										<div class="field half">
-											<input type="email" name="email" id="email" placeholder="Email" />
-										</div>
-										<div class="field">
-											<textarea name="message" id="message" placeholder="Message"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send" class="primary" /></li>
-									</ul>
-								</form>
-							</section> -->
-							<section>
-								<h2>Follow</h2>
-								<ul class="icons">
-									<li><a href="https://www.linkedin.com/in/jason-hua/" class="icon brands style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="https://orcid.org/0000-0003-1888-2796" class="icon brands style2 fa-orcid"><span class="label">ORCID</span></a></li>
-									<li><a href="https://scholar.google.com/citations?user=_0ii9bkAAAAJ&hl=en" class="icon brands style2 fa-google"><span class="label">Google Scholar</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
-									<li><a href="https://500px.com/p/squinnn" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
-									<li><a href="jbxhua@gmail.com" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
-								</ul>
-							</section>
-							<ul class="copyright">
-								<li>&copy; Hua 2025. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</footer>
+    <!-- Image modal -->
+    <div class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
 
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/finisher-header.es5.min.js" type="text/javascript"></script>
-			<script type="text/javascript">
-				new FinisherHeader({
-				"count": 12,
-				"size": {
-					"min": 1300,
-					"max": 1500,
-					"pulse": 0
-				},
-				"speed": {
-					"x": {
-					"min": 0.6,
-					"max": 3
-					},
-					"y": {
-					"min": 0.6,
-					"max": 3
-					}
-				},
-				"colors": {
-					"background": "#8cabbe",
-					"particles": [
-					"#a4bfeb",
-					"#cc3f0c"
-					]
-				},
-				"blending": "lighten",
-				"opacity": {
-					"center": 0.6,
-					"edge": 0
-				},
-				"skew": 0,
-				"shapes": [
-					"c"
-				]
-				});
-				</script>
-
-	</body>
+    <script>
+        // Simple JavaScript for image modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoItems = document.querySelectorAll('.photo-item');
+            const modal = document.querySelector('.modal');
+            const modalImg = document.getElementById('modal-image');
+            const closeModal = document.querySelector('.modal-close');
+            
+            // Open modal on image click
+            photoItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    modalImg.src = imgSrc;
+                    modal.style.display = 'flex';
+                });
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside image
+            modal.addEventListener('click', function(e) {
+                if (e.target !== modalImg) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
 </html>
