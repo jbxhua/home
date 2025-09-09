@@ -54,7 +54,7 @@
 					<div id="main">
 						<div class="inner">
 							<h1>Environmental Science and Engineering</h1>
-							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
+							<span class="image main"><img src="images/toc.png" alt="" style="height: 500px; width: auto;"/></span>
 							<p>I study a class of chemicals called polychlorinated biphenyls (PCBs) in the environment. PCBs are toxic, man-made chemicals that were used in a variety of industrial and commercial applications such as transformers and capacitors, heat transfer and hydraulic fluid, plasticizers, adhesives, and building materials. PCBs were banned in 1979 because of their toxicity; they are carcinogens, endocrine disruptors, and neurotoxins. Click <a href = "=">here</a> to learn more about PCBs.</p>
 
 							<p>My current research focuses on identying sources of PCBs in school air and PCB emissions from building materials in schools. To measure PCBs in schools, we deploy polyurethane foam passive air samplers (PUF-PAS) and polyurethane foam passive emission samplers (PUF-PES). [add pics] In collarboration with the Vermont Department of Environmental Conservation and the Vermont Department of Health, we deployed these samplers in 19 schools throughout Vermont between 2022 - 2024 to identify major sources of PCBs in schools. </p>
@@ -64,6 +64,77 @@
 							<p></p>
 						</div>
 					</div>
+					<div id="orcid-works" class="pubs"></div>
+
+							<style>
+							.pubs {
+								font-family: sans-serif;
+								max-width: 700px;
+								margin: 2rem auto;
+							}
+							.pubs h2 {
+								font-size: 1.5rem;
+								margin-bottom: 1rem;
+							}
+							.pubs ul {
+								list-style: none;
+								padding: 0;
+							}
+							.pubs li {
+								margin-bottom: 0.75rem;
+								padding: 0.5rem;
+								border-bottom: 1px solid #ddd;
+							}
+							.pubs a {
+								color: #0066cc;
+								text-decoration: none;
+							}
+							.pubs a:hover {
+								text-decoration: underline;
+							}
+							</style>
+
+							<script>
+							async function loadORCID() {
+							const orcid = "0000-0003-1888-2796"; // replace with your ORCID iD
+							const response = await fetch(`https://pub.orcid.org/v3.0/${orcid}/works`, {
+								headers: { "Accept": "application/json" }
+							});
+							const data = await response.json();
+
+							let works = data.group.map(w => {
+								let summary = w["work-summary"][0];
+								let title = summary.title.title.value;
+								let year = summary["publication-date"]?.year?.value || "";
+								let link = "";
+
+								// try to grab a DOI if available
+								if (summary["external-ids"]?.["external-id"]) {
+								let doiObj = summary["external-ids"]["external-id"]
+									.find(eid => eid["external-id-type"] === "doi");
+								if (doiObj) {
+									link = "https://doi.org/" + doiObj["external-id-value"];
+								}
+								}
+
+								return { title, year, link };
+							});
+
+							document.getElementById("orcid-works").innerHTML = `
+								<h2>Publications</h2>
+								<ul>
+								${works.map(w => `
+									<li>
+									${w.link ? `<a href="${w.link}" target="_blank">${w.title}</a>` : w.title}
+									${w.year ? ` <em>(${w.year})</em>` : ""}
+									</li>
+								`).join("")}
+								</ul>
+							`;
+							}
+							loadORCID();
+							</script>
+
 
 				<!-- Footer -->
 					<footer id="footer">
