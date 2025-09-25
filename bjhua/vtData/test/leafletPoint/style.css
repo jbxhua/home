@@ -1,0 +1,110 @@
+html,body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  margin: 0;
+  font-family: 'Raleway';
+}
+
+#map {
+  width: 100%;
+  height: 600px;
+}
+
+#legend {
+  width: 300px;
+  height: 300px;
+  font-size: 14px;
+  font-family: 'Raleway';
+  padding-top: 50px;
+  padding-left: 50px;
+  /*
+  font-weight: normal;
+  font-style: normal;
+  */
+}
+
+#legendpoints {
+  width: 300px;
+  height: 100px;
+  font-size: 14px;
+  font-family: 'Raleway';
+  padding-top: 50px;
+  padding-left: 50px;
+}
+
+.legendQuant{
+  font-style: normal;
+  font-weight: normal;
+  font-family: 'Raleway';
+}
+
+.SvgOverlay {
+
+}
+
+.SvgOverlay,.SvgOverlay svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.SvgOverlay path {
+  stroke: Orange;
+  stroke-width: 0px;
+  fill: Red;
+  /* 	fill-opacity: .3; */
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1px;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.infolabel {
+	float: right;
+	width: 250px;
+	height: 230px;
+	color: #fff;
+	background-color: #000;
+	border: solid thin #fff;
+	padding: 5px;
+	display: hidden;
+	position: absolute;
+	z-index: 100;
+}
+
+.infolabel h1 {
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+	line-height: 1em;
+}
+
+.infolabel b {
+	float: left;
+}
+
+.labelname {
+	display: inline-block;
+	float: right;
+	margin: -25px 0px 0px 50px;
+	font-size: 1em;
+	font-weight: bold;
+	position: absolute;
+}
+
+.leaflet-container.crosshair-cursor-enabled {
+  cursor: pointer;
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+
+
+
+
+
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GeoVis</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/3-col-portfolio.css" rel="stylesheet">
+
+    
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">PCBs in Vermont Schools</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="shortbio.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://iowasuperfund.uiowa.edu/" target="_blank">ISRP</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="mailto:bao-hua@uiowa.edu">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      
+    
+      <script type = "text/javascript">
+
+var d3 = require("d3@5")
+var topojson = require("topojson-client@3")
+var simple = require("simple-statistics@7.0.7/dist/simple-statistics.min.js")
+
+var points = "data/schData.geojson"
+var basepolygons = "data/vtBound3.json"
+
+// id or name attribute to be displayed on mouse on
+var idAttribute = "Organizati";
+var attributeName = "Socioeconomic_Percentile";
+//enter the name of the normalized attribute if normalization is used
+var attributeAlias = "SocPerc";
+// enter the normalization attribute to divide the original attribute with.
+// if there is no divider, the variable divideBy shouldn't be assigned any value as below:
+// var divideBy;
+var divideBy;
+// If you would like to multiple the variables with a constant value enter them in multiplyBy array.
+// If there is no need for multiplication, simply enter 1 for each value in multiplyBy.
+// Multiply by 1000000 converts density per square meters to per square kms.
+var multiplyBy = 1;
+
+var formatLegend = d3.format(".0%");
+
+
+
+
+      </script>
+      <!-- Page Content -->
+    <div class="container">
+        
+        
+
+
+
+
+
+    </div>
+    
+      <!-- Footer -->
+      <footer class="py-5 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; Jason Hua 2024</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+  
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+
+</body>
+</html>

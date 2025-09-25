@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <origin/>
+                <pubdate>20200428</pubdate>
+                <title>FacilitiesSchools_PTSCHOOL</title>
+                <edition>2020a</edition>
+                <geoform>vector digital data</geoform>
+                <serinfo>
+                    <sername>Vermont School Locations</sername>
+                    <issue>2020a</issue>
+                </serinfo>
+                <pubinfo>
+                    <pubplace/>
+                    <publish>VT Agency of Education</publish>
+                </pubinfo>
+                <othercit>Tile Structure - STATE</othercit>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>(Link to Metadata) FacilitiesSchools_PTSCHOOL is designed to provide point locations of every Vermont School along with the established school ID (PSID) for geographic analysis of school statistical data. The 2020 update was conducted without the benefit of Agency of Education (AOE) primary and secondary school registry information as an interim solution for potential short term pandemic related support. All features are now coincident with E911 sites. Once the dust settles a copy of the registry should be used in an additional update effort to ensure completeness. Independent schools were added from the &amp;quot;Directory of Vermont Approved and Recognized Independent Schools, Approved Tutorials and Distance Learning Schools, Other Educational Programs, and State-Operated Facilities&amp;quot;. Originally created in 1997 by Vermont's Regional Planning Commissions, each school name and location was verified by each School Supervisory Union and merged into a single coverage by VCGI. The next update came in 2003 with VCGI using an updated list of schools from the VT Department of Education that was subsequentially validated in 2004 by the DOE. Skipping forward to 2014, the DOE updated the representations of Vermont's public K12 school locations for school year 2014 and VCGI split the layer into two distinct feature classes: 1) VT School Locations - K-12; and 2) VT School Locations - Post-Secondary.</abstract>
+            <purpose>General reference mapping.</purpose>
+        </descript>
+        <timeperd>
+            <timeinfo>
+                <sngdate>
+                    <caldate>20200101</caldate>
+                </sngdate>
+            </timeinfo>
+            <current>20200422</current>
+        </timeperd>
+        <status>
+            <progress>Complete</progress>
+        </status>
+        <spdom>
+            <bounding>
+                <westbc>-73.454162</westbc>
+                <eastbc>-71.465281</eastbc>
+                <northbc>45.018361</northbc>
+                <southbc>42.722789</southbc>
+            </bounding>
+        </spdom>
+        <keywords>
+            <theme>
+                <themekt>ISO 19115 Topic Category</themekt>
+                <themekey>structure</themekey>
+            </theme>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>vermont schools</themekey>
+                <themekey>education</themekey>
+                <themekey>school locations</themekey>
+                <themekey>schools</themekey>
+                <themekey>K12</themekey>
+                <themekey>VT school locations</themekey>
+            </theme>
+            <place>
+                <placekt>None</placekt>
+                <placekey>vermont</placekey>
+            </place>
+            <temporal>
+                <tempkt>None</tempkt>
+                <tempkey>2020</tempkey>
+            </temporal>
+        </keywords>
+        <accconst>VCGI and the State of Vermont make no representations of any kind, including but not limited to the warranties of merchantability or fitness for a particular use, nor are any such warranties to be implied with respect to the data.</accconst>
+        <useconst>VCGI and the State of Vermont make no representations of any kind, including but not limited to the warranties of merchantability or fitness for a particular use, nor are any such warranties to be implied with respect to the data.</useconst>
+        <ptcontac>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>VT Center for Geographic Information</cntorg>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>1 National Life Dr., Davis Building, 6th Floor</address>
+                    <city>Montpelier</city>
+                    <state>VT</state>
+                    <postal>05620-0501</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntvoice>802/882-3002</cntvoice>
+                <cnttdd>None</cnttdd>
+                <cntfax>802/828-3383</cntfax>
+                <cntemail>accd.vcgiinfo@vermont.gov</cntemail>
+                <hours>9am - 5pm, M-F</hours>
+            </cntinfo>
+        </ptcontac>
+        <secinfo>
+            <secsys>N/A</secsys>
+            <secclass>Unclassified</secclass>
+            <sechandl>No Security Considerations</sechandl>
+        </secinfo>
+        <native>ESRI ArcGIS software</native>
+    </idinfo>
+    <dataqual>
+        <complete>The initial data point digitized in 1997 were evaluated using test plots of school locations for each school district were sent to school Supervisory Unions for verification of location accuracy and school name. The data layer was revised by VCGI in 2003. Updates were made by a GIS Technician (Ryan Ochs). 1. Compared with the state list.(matched on psid) 2. Pulled all the non-matching, tech schools, and post-secondaryinstitutions.(created a y/n match field) 3. Manually checked the non matching schools to see what may have inadvertently been pulled out. Done by checking state sites, emailing, etc. 4. Merged the tech schools and colleges back in to the layer. 5. Checked the college and tech schools to verify existence. Removed the non-existing ones. 6. Merged with county and tbhash to get correct county names. Also added fips6 field. VCGI posted new data to this data set in 2014. 1. Vermont Agency of Education provided new data for public K12 schools to VCGI. 2. VCGI exported records of pre-existing feature class with POSTSEC=Y to a new separate feature class. 3. VCGI replaced the pre-existing feature class with the new K12 data and renamed that feature class. VCGI revised existing and added new data in 2020. 1. "Snapped" all locations to corresponding E911 sites. 2. Added Independent schools from AOE report. 3. Subsequent update with AOE primary and secondary school registry is recommended. ess.</complete>
+        <lineage>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <pubdate>20200428</pubdate>
+                        <title>FacilitiesSchools_PTSCHOOL</title>
+                    </citeinfo>
+                </srccite>
+                <srcscale>0</srcscale>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <sngdate>
+                            <caldate>19961210</caldate>
+                        </sngdate>
+                    </timeinfo>
+                    <srccurr>ground condition</srccurr>
+                </srctime>
+                <srccitea>FacilitiesSchools_PTSCHOOL</srccitea>
+                <srccontr>RPCs</srccontr>
+            </srcinfo>
+            <procstep>
+                <procdesc>Original Coverage integration and Documention - Operator = David Long, VCGI</procdesc>
+                <procdate>19961210</procdate>
+            </procstep>
+            <procstep>
+                <procdesc>Integrated rest of schools, did quality control. - Operator = Alice Doyle, VCGI</procdesc>
+                <procdate>19970707</procdate>
+            </procstep>
+            <procstep>
+                <procdesc>Two school district IDs updated. Operator = Steve Sharp, VCGI</procdesc>
+                <procdate>19981117</procdate>
+            </procstep>
+            <procstep>
+                <procdesc>The data layer was revised by VCGI in 2003. Updates were made by a GIS Technician (Ryan Ochs). Operator = Steve Sharp, VCGI 1. Compared with the state list.(matched on psid) 2. Pulled all the non-matching, tech schools, and post-secondaryinstitutions.(created a y/n match field) 3. Manually checked the non matching schools to see what may haveinadvertently been pulled out. Done by checking state sites, emailing, etc. 4. Merged the tech schools and colleges back in to the layer. 5. Checked the college and tech schools to verify existence. Removed the non-existing ones. 6. Merged with county and tbhash to get correct county names. Also added fips6 field. 7. Cleaned out unnecessary fields.</procdesc>
+                <procdate>20030217</procdate>
+            </procstep>
+            <procstep>
+                <procdesc>Updates for the locations of the following schools were provided by the Vermont Departmnet of Education: Currier Memorial USD #23, Salisbury School, Brookline Elementary School, Braintree School, and Fletcher Elementary School. Corrections were based on inconsistencies with other Dept. of Education data sets and phone calls to the schools to confirm the locations. Operator = Tom Williams, VCGI</procdesc>
+                <procdate>20040907</procdate>
+            </procstep>
+            <procstep>
+                <procdesc>1. VCGI exported records of pre-existing feature class with POSTSEC=Y to a new separate feature class. Named that new featureclass Facilities_PTSCHOOL_point_postsec. 2. VCGI replaced the pre-existing feature class with the new K12 data and renamed that feature class from Facilities_PTSCHOOL_point to Facilities_PTSCHOOL_point_K12. Operator = Ivan Brown, VCGI</procdesc>
+                <procdate>20141216</procdate>
+            </procstep>
+            <procstep>
+                <procdesc>Snapped all existing points to Emergency E911 Site points &#147;SITETYPE = &#145;Schools K12&#147; (addresses not updated) with following exceptions that were manually snapped: Bridgewater Village School, Guildhall Elementary School, JFK Middle, Jericho Elementary School, Lyndon Institute, Peoples Academy Middle School, Whitcomb Jr/Sr High School, Windsor High School and Rivendell Academy. Added 82 geocoded of 96 records in AOE Directory of Vermont Approved and Recognized Independent Schools, Approved Tutorials and Distance Learning Schools, Other Educational Programs, and State-Operated Facilities. Other changes include: 1) adding Brattleboro Middle School; 2) Switching locations for Woodstock Sr/Middle and Woodstock Elementary Schools; 3) adding field &#147;Sector&#148; to calc AOE schools = &#147;Independent&#148;; 4) Changed all text fields to title case; and 5) Updated all X, Y lat/long values. Visual review of attribute table to delete following duplicates in merged data: &#147;Burr &amp; Burton&#148; and &#147;St. Johnsbury Academy&#148;. Operator = Mike Brouillette, VCGI</procdesc>
+                <procdate>20200420</procdate>
+            </procstep>
+        </lineage>
+    </dataqual>
+    <spdoinfo>
+        <direct>Vector</direct>
+        <ptvctinf>
+            <sdtsterm>
+                <sdtstype>Entity point</sdtstype>
+            </sdtsterm>
+        </ptvctinf>
+    </spdoinfo>
+    <eainfo>
+        <detailed>
+            <enttyp>
+                <enttypl>Facilities_PTSCHOOL_point_K12 attributes</enttypl>
+            </enttyp>
+            <attr>
+                <attrlabl>OBJECTID</attrlabl>
+                <attrdef>Internal feature number.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Sequential unique whole numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>ORGID</attrlabl>
+                <attrdef>VT AOE public school identification number</attrdef>
+            </attr>
+            <attr>
+                <attrlabl>ORGANIZATI</attrlabl>
+                <attrdef>School Name</attrdef>
+            </attr>
+            <attr>
+                <attrlabl>ADDRESS</attrlabl>
+                <attrdef>Address of school</attrdef>
+            </attr>
+            <attr>
+                <attrlabl>CITY</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>STATE</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>ZIP</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>Lon</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>Lat</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>GRTYPE</attrlabl>
+                <attrdef>Classification of school</attrdef>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Elementary</edomv>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Middle</edomv>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Secondary</edomv>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>K-12</edomv>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Sector</attrlabl>
+                <attrdef>School classification</attrdef>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Independent</edomv>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Private</edomv>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Public</edomv>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+        </detailed>
+        <detailed>
+            <enttyp>
+                <enttypl>Facilities_PTSCHOOL_point_postsec attributes</enttypl>
+            </enttyp>
+            <attr>
+                <attrlabl>OBJECTID</attrlabl>
+                <attrdef>Internal feature number.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Sequential unique whole numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SCHLNAME</attrlabl>
+                <attrdef>School Name</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Name of school</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>COMMONNAME</attrlabl>
+                <attrdef>Common name used for school if it is different from SCHLNAME</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>PSID</attrlabl>
+                <attrdef>School ID Code</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <codesetd>
+                                                						
+                        
+                        <codesetn>PSID</codesetn>
+                                                						
+                        
+                        <codesets>VT Department of Education</codesets>
+                                                					
+                    
+                    </codesetd>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>POSTSEC</attrlabl>
+                <attrdef>Identifies whether school is Post Secondary or not.</attrdef>
+                <attrdefs>VCGI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Post Secondary code</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>ADDRESS</attrlabl>
+                <attrdef>School mailing address</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOWNMAIL</attrlabl>
+                <attrdef>Townname for mailing address</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ZIP</attrlabl>
+                <attrdef>Address zip code</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SUNAME</attrlabl>
+                <attrdef>School Supervisory Union Name</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SUID</attrlabl>
+                <attrdef>School Supervisory Union Identifier</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TAXTOWN</attrlabl>
+                <attrdef>Town which provides taxes for this particular school</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TAXTWNID</attrlabl>
+                <attrdef>Town ID for town which provides taxes for this particular school</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>COUNTY</attrlabl>
+                <attrdef>County name</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>PHONE</attrlabl>
+                <attrdef>School general phone number</attrdef>
+                <attrdefs>VT Department of Education</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>FIPS6</attrlabl>
+                <attrdef>FIPS code</attrdef>
+                <attrdefs>VGIS Geographic Codes Standard</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Refer to GEOCODES Data Product on VGIS Website</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+        </detailed>
+    </eainfo>
+    <distinfo>
+        <distrib>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>VT Center for Geographic Information</cntorg>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>1 National Life Dr., Davis Building, 6th Floor</address>
+                    <city>Montpelier</city>
+                    <state>VT</state>
+                    <postal>05620-0501</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntvoice>802/882-3002</cntvoice>
+                <cnttdd>None</cnttdd>
+                <cntfax>802/828-3383</cntfax>
+                <cntemail>accd.vcgiinfo@vermont.gov</cntemail>
+                <hours>9am - 5pm, M-F</hours>
+            </cntinfo>
+        </distrib>
+        <resdesc>FacilitiesSchools_PTSCHOOL</resdesc>
+        <distliab>VCGI and the State of Vermont make no representations of any kind, including but not limited to the warranties of merchantability or fitness for a particular use, nor are any such warranties to be implied with respect to the data.</distliab>
+        <stdorder>
+            <digform>
+                <digtinfo>
+                    <formname>SHP</formname>
+                    <formspec>ESRI Shapefile format (compressed to ZIP format)</formspec>
+                    <formcont>geospatial data</formcont>
+                    <filedec>ZIP decompression software</filedec>
+                </digtinfo>
+                <digtopt>
+                    <offoptn>
+                        <offmedia>USBFlashDrive</offmedia>
+                    </offoptn>
+                </digtopt>
+            </digform>
+            <fees>No charge when downloading from the internet, and when no custom processing is required.</fees>
+            <ordering>Send an email describing data request to accd.vcgiinfo@vermont.gov</ordering>
+            <turnarnd>About 5 days.</turnarnd>
+        </stdorder>
+        <availabl>
+            <timeinfo>
+                <sngdate>
+                    <caldate>20200428</caldate>
+                </sngdate>
+            </timeinfo>
+        </availabl>
+    </distinfo>
+    <metainfo>
+        <metd>20200429</metd>
+        <metc>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>VT Center for Geographic Information</cntorg>
+                    <cntper>GIS Database Administrator</cntper>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>1 National Life Dr., Davis Building, 6th Floor</address>
+                    <city>Montpelier</city>
+                    <state>VT</state>
+                    <postal>05620-0501</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntvoice>802/882-3002</cntvoice>
+                <cnttdd>None</cnttdd>
+                <cntfax>802/828-3383</cntfax>
+            </cntinfo>
+        </metc>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+        <metsi>
+            <metscs>N/A</metscs>
+            <metsc>Unclassified</metsc>
+            <metshd>No security considerations</metshd>
+        </metsi>
+    </metainfo>
+</metadata>

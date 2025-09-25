@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" charset="utf-8" />
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet' />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,900" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js" type="text/javascript"></script>
+	<script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+
+	<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.21.0/d3-legend.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="https://geo-social.com">Geog 3540</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="defaultNavbar1">
+				<ul class="nav navbar-nav">
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../shortbio.html">About</a></li>
+							<li><a href="../files/koylu_cv_23.pdf">Resume</a></li>
+							<li class="divider"></li>
+							<li><a href="caglar-koylu@uiowa.edu">Contact</a></li>
+						</ul>
+					</li>
+				</ul>
+
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+<!-- /div that contains the info-label hover over window-->
+	<div style="height:0px;" id="info-label" class="col-md-6 portfolio-item"></div>
+
+	<div class="container">
+		<div class="col-md-12">
+			<h2></h2>
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12">
+						<div id="map"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<div id="legendpoints"></div>
+					</div>
+					<div class="col-md-3">
+						<div id="legend"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+//BASEMAP SETTINGS
+//change the center of your map in setView
+// var centerLatitude = 42.17, centerLongitude = -93.45;
+// Change the zoom level to fit your dataset
+// zoom level 1 shows the whole world, and 15 focuses on a neighborhood level
+// var zoomLevel = 7;
+// var map = L.map('map').setView([centerLatitude, centerLongitude], zoomLevel);
+
+//alternative to setting center coordinates and zoom level, zoom to the spatial extent (bounding box) of the dataset
+var southWest = L.latLng(42.64, -73.58), northEast = L.latLng(45.11, -71.29), bounds = L.latLngBounds(southWest, northEast);
+var map = L.map('map').fitBounds(bounds);
+
+var blackwhite = "http://{s}.sm.mapstack.stamen.com/(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/{z}/{x}/{y}.png";
+var whiteblack = "http://{s}.sm.mapstack.stamen.com/((naip,$fff[difference],$fff[@60],$fff[hsl-saturation@90])[multiply],(mapbox-water,$fff[difference],$000[@60],$090d11[hsl-color]))/{z}/{x}/{y}.png"
+var whiteblue = "http://{s}.sm.mapstack.stamen.com/(toner-lite,(watercolor,$fff%5B@0%5D,$fff%5Bhsl-saturation@50%5D,mapbox-water%5Bdestination-in%5D)%5B@50%5D/{z}/{x}/{y}.png";
+var mapboxTiles = L.tileLayer(whiteblue).addTo(map);
+
+// CHOROPLETH MAP SETTINGS ////////////////////////////////////////////////////////////////////////////////////
+var polygonJSONFile = "data/vtCounties.geojson"
+var attributeName = "NAME";
+//enter the name of the normalized attribute if normalization is used
+var attributeAlias = "NAME";
+// enter the normalization attribute to divide the original attribute with.
+// if there is no divider, the variable divideBy shouldn't be assigned any value as below:
+// var divideBy;
+var divideBy;
+// If you would like to multiple the variables with a constant value enter them in multiplyBy array.
+// If there is no need for multiplication, simply enter 1 for each value in multiplyBy.
+// Multiply by 1000000 converts density per square meters to per square kms.
+var multiplyBy = 1;
+
+var formatLegend = d3.format(".2f");
+// keep the background polygons transparent.
+// Background polygons are still needed (even if you don't symbolize them)
+// to set the frame of the point layer.
+var polygonOpacity = 0;
+var colors = colorbrewer.Greys;
+var numOfClasses = 4;
+
+// POINT SYMBOL MAP SETTINGS //////////////////////////////////////////////////////////////////////
+var pointJSONFile = "data/schData.geojson";
+// title for the legend
+var pointTitle = "Average PCB Concentrations by School"
+// attribute name to be used for proportional symbols
+var pointVariable = "schData_avgconc";
+// id attribute for points to be used for creating tooltip
+var pointKey = "ORGANIZATI";
+// list all variables to be included in the information window on hover over tooltip
+var variablesOnInfoWindow = ["schData_avgconc", "City"];
+var formatPointLegend = d3.format(".2s");
+// suffix for legend
+var suffix = " ng/m3"
+// enter the minimum and maximum pixel values for the proportional symbols
+var minRadius = 0, maxRadius = 30;
+// circle fill color
+var circleFill = "#de2d26";
+// circle stroke color
+var circleStroke = "#67000d";
+// circle fill opacity
+var circleOpacity = .5;
+
+
+
+//DO NOT CHANGE ANYTHING BELOW THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING
+////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+// we will be appending the SVG to the Leaflet map pane
+// g (group) element will be inside the svg
+var svg = d3.select(map.getPanes().overlayPane).append("svg");
+
+// if you don't include the leaflet-zoom-hide when a
+// user zooms in or out you will still see the phantom
+// original SVG
+var g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+var polygoncolors;
+var points;
+
+var colorsArray = colors[numOfClasses].map(function(rgb) { return d3.hsl(rgb); });
+
+var radius;
+var pointValues = [];
+var polygonValues = [];
+var transform, path;
+
+function recalculateAttribute(attribute, multiplyby, divideby) {
+	// Function to catch errors when normalizing an attribute
+	// console.log(p, n);
+	if (!+divideby) {
+		return null;
+	} else {
+		return ((+multiplyby) * (+attribute)) / +divideby;
+	}
+}
+
+//add the polygon data
+d3.json(polygonJSONFile, function(geoShape) {
+
+	// add the point data
+	d3.json(pointJSONFile, function(collection) {
+		
+		
+
+		geoShape.features.forEach(function (d) {
+			if(d.properties[divideBy]){
+				divide = d.properties[divideBy];
+				d.properties[attributeAlias] = recalculateAttribute(d.properties[attributeName], multiplyBy, d.properties[divideBy]);
+				if(d.properties[attributeAlias]){
+					polygonValues.push(+d.properties[attributeAlias]);
+				}
+			}else{
+				if(d.properties[attributeName]){
+					polygonValues.push(+d.properties[attributeName]);
+				}
+			}
+		});
+
+		polygoncolors = d3.scaleQuantile()
+		.range(colorsArray)
+		.domain(polygonValues);
+
+		//  create a d3.geo.path to convert GeoJSON to SVG
+		transform = d3.geoTransform({
+			point : projectPoint
+		});
+		path = d3.geoPath().projection(transform).pointRadius(6);
+
+		// create path elements for each of the features
+		polygons = g.selectAll("path")
+		.data(geoShape.features)
+		.enter()
+		.append("path");
+
+		/* Add a LatLng object to each item in the dataset */
+		collection.features.forEach(function(d) {
+			d.LatLng = new L.LatLng(d.geometry.coordinates[1],
+				d.geometry.coordinates[0]);
+				pointValues.push(d.properties[pointVariable]);
+			})
+
+			radius = d3.scaleSqrt()
+			.domain(d3.extent(pointValues))
+			.range([minRadius, maxRadius]);
+
+			points = g.selectAll("circle")
+			.data(collection.features)
+			.enter().append("circle");
+
+			map.on("viewreset", resetMap);
+			resetMap();
+
+			//CREATE THE LEGENDS
+			// the values for each circle for the nested legend
+			var legendValues = 	[d3.min(pointValues), d3.max(pointValues)/4, d3.max(pointValues)];
+			//create point symbol map legend
+			var legendpsvg = d3.select("#legendpoints").append("svg");
+
+			var legwidth  = Number(legendpsvg.style("width").replace("px", '')),
+			legheight  = Number(legendpsvg.style("height").replace("px", '')),
+			legx = legwidth/4,
+			legy = legheight/2,
+			textPadding = 80;
+
+			legendpsvg.append("g")
+			.append("text")
+			.attr('font-family', 'Raleway')
+			.attr('font-size', 14)
+			.text(pointTitle)
+			.attr('transform', 'translate(0,20)');
+
+			legendpsvg.append("g")
+			.selectAll("g")
+			.data(legendValues)
+			.enter()
+			.append("circle")
+			.sort(function(a, b){
+				return b.value - a.value;
+			})
+			.attr("fill", circleFill)
+			.attr("fill-opacity", circleOpacity)
+			.attr("stroke", circleStroke)
+			.attr ("stroke-width" , "1px")
+			// .attr("cy", function(d){
+			// 	return -radius(d);
+			// })
+			.attr('cx', legx)
+			.attr('cy', function(d){ return legy - Math.abs(radius(d))})
+			.attr("r", function(d){
+				return radius(d);
+			})
+			.attr('transform', 'translate(0,' + radius(d3.max(legendValues)) + ')');
+
+			// append some lines based on values
+			legendpsvg.append('g')
+					.attr('class', 'values-line-wrap')
+					.selectAll('.values-labels')
+					.data(legendValues)
+					.enter().append('line')
+					.attr('x1', function(d){ return legx + radius(d)})
+					.attr('x2', legx + Math.abs(radius(Math.max(Math.abs(minRadius),Math.abs(maxRadius)))) + 14)
+					.attr('y1',function(d){ return legy - Math.abs(radius(d))})
+					.attr('y2', function(d){ return legy - Math.abs(radius(d))})
+					.style('stroke', '#888')
+					.style('stroke-dasharray', ('2,2'))
+					.attr('transform', 'translate(0,' + radius(d3.max(legendValues)) + ')');
+
+			// append some labels from values
+			legendpsvg.append('g')
+					.attr('class', 'values-labels-wrap')
+					.selectAll('.values-labels')
+					.data(legendValues)
+					.enter().append('text')
+					.attr('x', legx + Math.abs(radius(Math.max(Math.abs(minRadius),Math.abs(maxRadius)))) + 14 + textPadding)
+					.attr('y', function(d){ return (legy - Math.abs(radius(d))) + 4})
+					.attr('shape-rendering', 'crispEdges')
+					.style('text-anchor', 'end')
+					.style('fill', '#888')
+					.attr('font-family', 'Raleway')
+					.attr('font-size', 10)
+					.text(function(d){ return formatPointLegend(d) + suffix})
+					.attr('transform', 'translate(0,' + radius(d3.max(legendValues)) + ')');
+
+			//create chropleth map legend
+			var legendsvg = d3.select("#legend").append("svg");
+
+			legendsvg.append("g")
+			.attr("class", "legendQuant")
+			.attr("transform", "translate(20,20)");
+
+			var legend = d3.legendColor()
+			.labelFormat(formatLegend)
+			.useClass(false)
+			.title(attributeAlias)
+			.titleWidth(300)
+			.scale(polygoncolors);
+
+			legendsvg.select(".legendQuant")
+			.call(legend);
+
+			// fit the SVG element to leaflet's map layer
+			function resetMap() {
+				//change map colors given the topic
+				polygoncolors = d3.scaleQuantile()
+				.range(colorsArray)
+				.domain(polygonValues);
+
+				//update global text variables when map is updated.
+				bounds = path.bounds(geoShape);
+				var topLeft = bounds[0], bottomRight = bounds[1];
+
+				svg.attr("width", bottomRight[0] - topLeft[0])
+				.attr("height",bottomRight[1] - topLeft[1])
+				.style("left",topLeft[0] + "px")
+				.style("top", topLeft[1] + "px");
+
+				g.attr("transform", "translate(" + -topLeft[0] + ","
+				+ -topLeft[1] + ")");
+
+				// initialize the path data and set polygon symbology
+				polygons.attr("d", path)
+				.attr('fill', function(d) {
+					if(divideBy)
+					return polygoncolors(d.properties[attributeAlias]);
+					else
+					return polygoncolors(d.properties[attributeName]);
+				})
+				.attr("fill-opacity", polygonOpacity);
+
+				// set point symbology
+				points.style("stroke", circleStroke)
+				.style("fill-opacity", circleOpacity)
+				.style("fill", circleFill)
+				.style("stroke-width" , "1px")
+				.attr("transform",
+				function(d) {
+					return "translate("+
+					map.latLngToLayerPoint(d.LatLng).x +","+
+					map.latLngToLayerPoint(d.LatLng).y +")";
+				}
+			)
+			.attr("r", function(d){
+				return radius(d.properties[pointVariable]);
+			}).on("mouseover", highlight)
+			.on("mouseout", dehighlight)
+			.on("mousemove", moveLabel);
+
+		}//end of reset map
+
+		// Use Leaflet to implement a D3 geometric transformation.
+		function projectPoint(x, y) {
+			var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+			this.stream.point(point.x, point.y);
+		}
+
+		function constant(x) {
+			return function() {
+				return x;
+			};
+		}
+		// missing from d3.v4 so we just copying from v3
+		// Copies a variable number of methods from source to target.
+		d3.rebind = function (target, source) {
+			var i = 1, n = arguments.length, method;
+			while (++i < n) target[method = arguments[i]] = d3_rebind(target, source, source[method]);
+			return target;
+		};
+		// Method is assumed to be a standard D3 getter-setter:
+		// If passed with no arguments, gets the value.
+		// If passed with arguments, sets the value and returns the target.
+		function d3_rebind(target, source, method) {
+			return function () {
+				var value = method.apply(source, arguments);
+				return value === source ? target : value;
+			};
+		}
+
+		function highlight(data){
+			var props = data.properties;
+			var labelAttribute = "<h1>"+ formatPointLegend(props[pointVariable]) + "</h1><br><b> " + props[pointKey] +"</b>";
+
+ 			// if not empty, all attributes in this array are plotted each on a new line in the pop-up window
+			variablesOnInfoWindow.forEach(function (d) {
+				if(Number(props[d]))
+					labelAttribute += "<br><b>" + d + ": "+ formatPointLegend(props[d]) + "</b>";
+				else
+					labelAttribute += "<br><b>" + d + ": "+ props[d] + "</b>";
+			});
+			var labelName = data[pointKey];
+
+			// Append label
+			var infolabel = d3.select("#info-label")
+			.append("div") //create the label div
+			.attr("class", "infolabel")
+			.attr("id", props[pointKey]+"label") //for styling label
+			.html(labelAttribute) //add text
+
+		};
+
+		function dehighlight(data){
+			d3.select("#id"+data[pointKey]+"label").remove(); //remove info label
+			d3.select("#info-label").selectAll("*").remove();
+		};
+
+		function moveLabel() {
+			var x = d3.event.clientX-50; //horizontal label coordinate based mouse position stored in d3.event
+			var y = d3.event.clientY-50; //vertical label coordinate
+			d3.select(".infolabel") //select the label div for moving
+			.style("margin-left", x+"px") //reposition label horizontal
+			.style("margin-top", y+"px"); //reposition label vertical
+		};
+
+		});
+});
+
+</script>
+</body>
+</html>

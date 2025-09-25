@@ -1,0 +1,54 @@
+ 	AQVXM019:    19 to 34 years with one type of health insurance coverage
+
+        AQVXM033:    19 to 34 years: No health insurance coverage
+
+        AQVXM035:    35 to 64 years: With one type of health insurance coverage
+
+        AQVXM050:    35 to 64 years: No health insurance coverage
+
+	AQVXM052:    65 years and over: With one type of health insurance coverage
+
+	AQVXM066:    65 years and over: No health insurance coverage
+
+
+	AQPKE001:    Total
+       AQPKE017	AQPKE022	AQPKE023	AQPKE025
+
+        
+        AQPKM017:    Regular high school diploma
+        AQPKM018:    GED or alternative credential
+
+
+        AQPKM021:    Associate's degree
+        AQPKM022:    Bachelor's degree
+
+        AQPKM023:    Master's degree
+
+        AQPKM024:    Professional school degree
+        AQPKM025:    Doctorate degree
+
+var att1 = ('vt_tractData_AQPKM017'+'vt_tractData_AQPKM018'), att1alias = '% High School or GED', att1format = '.0%',
+	att2 = ('vt_tractData_AQPKM021'+'vt_tractData_AQPKM022'), att2alias =  '% Associated or Bachelors', att2format = '.0%',
+	att3 = 'vt_tractData_AQPKM023', att3alias = '% Masters', att3format = '.0%',
+	att4 = ('vt_tractData_AQPKM024'+'vt_tractData_AQPKM025'), att4alias = '% Professional or Doctorate', att4format = '.0%'
+
+
+
+ AQPKM002:    No schooling completed
+        AQPKM003:    Nursery school
+        AQPKM004:    Kindergarten
+        AQPKM005:    1st grade
+        AQPKM006:    2nd grade
+        AQPKM007:    3rd grade
+        AQPKM008:    4th grade
+        AQPKM009:    5th grade
+        AQPKM010:    6th grade
+        AQPKM011:    7th grade
+        AQPKM012:    8th grade
+        AQPKM013:    9th grade
+        AQPKM014:    10th grade
+        AQPKM015:    11th grade
+AQPKM016:    12th grade, no diploma
+
+        AQPKM019:    Some college, less than 1 year
+        AQPKM020:    Some college, 1 or more years, no degree

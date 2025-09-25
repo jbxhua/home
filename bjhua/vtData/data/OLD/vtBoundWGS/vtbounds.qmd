@@ -1,0 +1,89 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="3.32.1-Lima">
+  <identifier>GDB_VCGI.VCGI_ADMIN.Boundary_BNDHASH_poly_vtbnd</identifier>
+  <parentidentifier></parentidentifier>
+  <language>ENG</language>
+  <type>dataset</type>
+  <title>BoundaryOther_BNDHASH</title>
+  <abstract>The BNDHASH dataset depicts Vermont villages, towns, counties, Regional Planning Commissions (RPC), and LEPC (Local Emergency Planning Committee) boundaries. It is a composite of generally 'best available' boundaries from various data sources (refer to ARC_SRC and SRC_NOTES attributes). However, this dataset DOES NOT attempt to provide a legally definitive boundary. The layer was originally developed from TBHASH, which was the master VGIS town boundary layer prior to the development and release of BNDHASH. By integrating village, town, county, RPC, and state boundaries into a single layer, VCGI has assured vertical integration of these boundaries and simplified maintenance. BNDHASH also includes annotation text for town, county, and RPC names. BNDHASH includes the following feature classes: 1) VILLAGES = Vermont villages 2) TOWNS = Vermont towns 3) COUNTIES = Vermont counties 4) RPCS = Vermont's Regional Planning Commissions 5) LEPC = Local Emergency Planning Committee boundaries 6) VTBND = Vermont's state boundary The master BNDHASH layer is managed as ESRI geodatabase feature dataset by VCGI. The dataset stores villages, towns, counties, and RPC boundaries as seperate feature classes with a set of topology rules which binds the features. This arrangement assures vertical integration of the various boundaries. VCGI will update this layer on an annual basis by reviewing records housed in the VT State Archives - Secretary of State's Office. VCGI also welcomes documented information from VGIS users which identify boundary errors. NOTE - VCGI has NOT attempted to create a legally definitive boundary layer. Instead the idea is to maintain an integrated village/town/county/rpc boundary layer which provides for a reasonably accurate representation of these boundaries (refer to ARC_SRC and SRC_NOTES). BNDHASH includes all counties, towns, and villages listed in "Population and Local Government - State of Vermont - 2000" published by the Secretary of State. BNDHASH may include changes endorsed by the Legislature since the publication of this document in 2000 (eg: villages merged with towns). Utlimately the Vermont Secratary of State's Office and the VT Legislature are responsible for maintaining information which accurately describes the location of these boundaries. BNDHASH should be used for general mapping purposes only. * Users who wish to determine which boundaries are different from the original TBHASH boundaries should refer to the ORIG_ARC field in the BOUNDARY_BNDHASH_LINE (line featue with attributes). Also, updates to BNDHASH are tracked by version number (ex: 2003A). The UPDACT field is used to track changes between versions. The UPDACT field is flushed between versions.
+
+Depict Vermont's village, town, county, RPC, administrative, LEPC, and state boundary lines.</abstract>
+  <keywords vocabulary="Search keys">
+    <keyword>boundaries</keyword>
+    <keyword>RPC</keyword>
+    <keyword>villages</keyword>
+    <keyword>county</keyword>
+    <keyword>boundaries</keyword>
+    <keyword>Vermont</keyword>
+    <keyword>Vermont</keyword>
+    <keyword>towns</keyword>
+    <keyword>LEPC</keyword>
+  </keywords>
+  <keywords vocabulary="gmd:topicCategory">
+    <keyword>boundaries</keyword>
+    <keyword>boundaries</keyword>
+    <keyword>RPC</keyword>
+    <keyword>villages</keyword>
+    <keyword>county</keyword>
+    <keyword>Vermont</keyword>
+    <keyword>towns</keyword>
+    <keyword>LEPC</keyword>
+  </keywords>
+  <contact>
+    <contactAddress>
+      <type>both</type>
+      <address>1 National Life Dr, Dewey Building, 2nd Floor</address>
+      <city>Montpelier</city>
+      <administrativearea>VT</administrativearea>
+      <postalcode>05620-2001</postalcode>
+      <country>US</country>
+    </contactAddress>
+    <name>GIS Database Administrator</name>
+    <organization>VT Center for Geographic Information</organization>
+    <position></position>
+    <voice>802/882-3002</voice>
+    <fax></fax>
+    <email></email>
+    <role>Point of contact</role>
+  </contact>
+  <links>
+    <link mimeType="" size="" description="" type="ESRI Shapefile format (compressed to ZIP format)" format="" name="SHP" url=""/>
+  </links>
+  <history>Data source: BNDHASH was based on TBHASH. Coverage TBHASH was a composite of generally 'best available' town boundaries, from various data sources. These include VGIS data layers BoundaryTown_TB24, TWNBND, and TB (from parcel data), and coverage CCTB for Chittenden County. All of these sources were digital, in Arc/Info format. Detailed documentation is available for each data layer; brief descriptions are given below. TB24 - Data source is USGS RF 24000 scale topographic maps, pre-1990 dates, original media 95% paper, 5% mylar, digital files obtained from EPA Region 1. TWNBND - Covers Addison, Orange, Rutland, and Windham counties (plus a few adjacent towns). Various data sources, including town parcel maps, Green Mountain National Forest Survey maps, State Archive survey documents, and orthophotos (lines photointerpreted, with guidance from USGS topographic maps). Where none of the above existed for a town, lines were inferred from existing data. All previously mentioned data sources were at RF 5000 scale. Source dates varied; orthophotos for the four counties were flown between 1974 &amp; 1982. Media included paper, tin sheets (GMNF maps), and digital (DXF and Arc/Info). Quality control was visual overlay with source map where applicable. TB \ coverages from parcel data - 24 towns. Source was town tax parcel maps (orthophoto-based), usually at RF 5000 scale (village or more densely populated areas were often at RF 2500 or 1250 scale. Source media was mylar or paper; a few towns were converted from digital DXF files. The feature accuracy is only as good as the town's original tax maps. There were often edgematching problems at adjacent sheets of different scales. Quality control consisted of proof plot overlays reviewed by town project coordinators, and independant review by VCGI. CCTB - Chittenden county town boundaries, compiled by CCRPC. Sources may vary. Many are RF 5000 scale (or larger) orthophoto-based tax parcel maps. Others are RF 24000 scale USGS topographic quads and RF 20000 scale 1978 orthophoto composites. Dates vary. Media was paper and digital (the original source of these data was a TB coverage from the University of Vermont School of Natural Resources). TBHASH was first released in 12/16/1993 (Alice Doyle, VCGI).</history>
+  <dates>
+    <date type="Published" value="2003-06-17T00:00:00"/>
+  </dates>
+  <fees></fees>
+  <constraints type="Security constraints"></constraints>
+  <constraints type="Limitations of use">Although every effort has been made to assure the accuracy of features and their attributes, VCGI is not accountable for any errors or misuse of the data. The data should be used for general mapping purposes only!</constraints>
+  <rights>VCGI</rights>
+  <encoding></encoding>
+  <crs>
+    <spatialrefsys nativeFormat="Wkt">
+      <wkt>PROJCRS["NAD83 / Vermont",BASEGEOGCRS["NAD83",DATUM["North American Datum 1983",ELLIPSOID["GRS 1980",6378137,298.257222101,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4269]],CONVERSION["SPCS83 Vermont zone (meters)",METHOD["Transverse Mercator",ID["EPSG",9807]],PARAMETER["Latitude of natural origin",42.5,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",-72.5,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["Scale factor at natural origin",0.999964286,SCALEUNIT["unity",1],ID["EPSG",8805]],PARAMETER["False easting",500000,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Engineering survey, topographic mapping."],AREA["United States (USA) - Vermont - counties of Addison; Bennington; Caledonia; Chittenden; Essex; Franklin; Grand Isle; Lamoille; Orange; Orleans; Rutland; Washington; Windham; Windsor."],BBOX[42.72,-73.44,45.03,-71.5]],ID["EPSG",32145]]</wkt>
+      <proj4>+proj=tmerc +lat_0=42.5 +lon_0=-72.5 +k=0.999964286 +x_0=500000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
+      <srsid>2806</srsid>
+      <srid>32145</srid>
+      <authid>EPSG:32145</authid>
+      <description>NAD83 / Vermont</description>
+      <projectionacronym>tmerc</projectionacronym>
+      <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </crs>
+  <extent>
+    <spatial minz="0" maxz="0" maxx="-71.4652810000000045" miny="42.72278899999999879" dimensions="2" crs="EPSG:32145" minx="-73.45416199999999662" maxy="45.01836099999999874"/>
+    <temporal>
+      <period>
+        <start>2003-06-17T05:00:00Z</start>
+        <end></end>
+      </period>
+    </temporal>
+    <temporal>
+      <period>
+        <start></start>
+        <end></end>
+      </period>
+    </temporal>
+  </extent>
+</qgis>
